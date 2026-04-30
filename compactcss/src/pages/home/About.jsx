@@ -1,52 +1,63 @@
 import { useNavigate } from 'react-router-dom'
+import { FiInfo, FiArrowLeft, FiStar, FiUploadCloud, FiCopy, FiDownload, FiBarChart2, FiZap, FiMoon, FiSun } from 'react-icons/fi'
+import { useSettings, t } from '../../App'
 import './About.css'
 
 export default function About() {
   const navigate = useNavigate()
+  const { theme, toggleTheme, lang, toggleLang } = useSettings()
+  const text = t[lang]
 
   return (
     <div className="about-container">
       <header className="header">
         <div className="header-content centered-header">
-          <div className="logo-group">
-            <div className="logo-small">ℹ️</div>
-            <h1>About Compact CSS</h1>
+          
+          <div className="left-controls">
+            <button className="icon-btn" onClick={toggleTheme} title="Toggle Theme">
+              {theme === 'light' ? <FiMoon /> : <FiSun />}
+            </button>
+            <button className="icon-btn lang-btn" onClick={toggleLang} title="Toggle Language">
+              {lang === 'en' ? 'TH' : 'EN'}
+            </button>
           </div>
-          <p className="subtitle">Learn more about our CSS conversion tool</p>
-          <button className="nav-btn" onClick={() => navigate('/')}>
-            Back to Tool
-          </button>
+
+          <div className="logo-group">
+            <div className="logo-small"><FiInfo /></div>
+            <h1>{text.aboutTitle}</h1>
+          </div>
+          <p className="subtitle">{text.aboutSubtitle}</p>
+          
+          <div className="right-controls">
+            <button className="nav-btn" onClick={() => navigate('/')}>
+              <FiArrowLeft className="icon" /> {text.backBtn}
+            </button>
+          </div>
+
         </div>
       </header>
 
       <main className="main-content">
         <div className="about-content">
           <section className="about-section">
-            <h2>What is Compact CSS?</h2>
-            <p>
-              Compact CSS is a powerful tool designed to help developers compress and optimize their CSS code. 
-              With support for multiple format options, you can choose the best compression level for your project.
-            </p>
+            <h2>{text.whatIs}</h2>
+            <p>{text.whatIsDesc}</p>
           </section>
 
           <section className="about-section">
-            <h2>Available Formats</h2>
+            <h2>{text.formats}</h2>
             <div className="formats-grid">
               <div className="format-card">
                 <h3>Compact</h3>
-                <p>Removes all unnecessary whitespace while maintaining code integrity.</p>
-              </div>
-              <div className="format-card">
-                <h3>One Line</h3>
-                <p>Converts your entire CSS into a single line format.</p>
+                <p>{text.fmtCompactDesc}</p>
               </div>
               <div className="format-card">
                 <h3>Minify</h3>
-                <p>Ultra-compact version with aggressive whitespace removal.</p>
+                <p>{text.fmtMinifyDesc}</p>
               </div>
               <div className="format-card">
                 <h3>Pretty</h3>
-                <p>Formats CSS with proper indentation and readability.</p>
+                <p>{text.fmtPrettyDesc}</p>
               </div>
             </div>
           </section>
@@ -54,24 +65,24 @@ export default function About() {
           <section className="about-section">
             <div className="grid-2-col">
               <div>
-                <h2>How to Use</h2>
+                <h2>{text.howTo}</h2>
                 <ol className="styled-list">
-                  <li>Paste your CSS code into the input textarea</li>
-                  <li>Or upload a .css file by dragging and dropping</li>
-                  <li>Select your desired output format</li>
-                  <li>Click "Convert CSS" to process</li>
-                  <li>Copy the result or download as a file</li>
+                  <li>{text.step1}</li>
+                  <li>{text.step2}</li>
+                  <li>{text.step3}</li>
+                  <li>{text.step4}</li>
+                  <li>{text.step5}</li>
                 </ol>
               </div>
               <div>
-                <h2>Features</h2>
+                <h2>{text.features}</h2>
                 <ul className="styled-list no-bullet">
-                  <li>✨ Multiple format options</li>
-                  <li>📤 Drag and drop file upload</li>
-                  <li>📋 One-click copy to clipboard</li>
-                  <li>📥 Download converted CSS</li>
-                  <li>📊 Real-time size reduction stats</li>
-                  <li>⚡ Fast and efficient processing</li>
+                  <li><FiStar className="list-icon" /> {text.feat1}</li>
+                  <li><FiUploadCloud className="list-icon" /> {text.feat2}</li>
+                  <li><FiCopy className="list-icon" /> {text.feat3}</li>
+                  <li><FiDownload className="list-icon" /> {text.feat4}</li>
+                  <li><FiBarChart2 className="list-icon" /> {text.feat5}</li>
+                  <li><FiZap className="list-icon" /> {text.feat6}</li>
                 </ul>
               </div>
             </div>
